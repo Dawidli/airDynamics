@@ -11,6 +11,7 @@ void loop() {
 
 int congratz(INSERT_NAME_HERE)
   {
+  Serial.print("Welcome my son, ");
   Serial.print("Welcome to the machine! ");
-  Serial.println(INSERT_NAME_HERE); 
+  Serial.println("Where have you been?"); 
   }
