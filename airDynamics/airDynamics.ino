@@ -69,10 +69,30 @@ void loop()
   }
   if (abs(millis() - timer) > PUBLISH_FREQUENCY) // triggers the routine every 5 seconds
   {
+<<<<<<< Updated upstream
     float value = analogRead(analogPin);
     ubidots.add(VARIABLE_LABEL, value); // Insert your variable Labels and the value to be sent
+=======
+    float sensorValue = analogRead(analogPin);
+    float voltage = (sensorValue / 1023) * 5;
+    float wind_speed = mapfloat(voltage, 0.4, 2, 0, 32.4);
+    float speed_mph = ((wind_speed *3600)/1609.344);
+    float speed_mps = speed_mph*0.447;
+    
+    
+    //float value = analogRead(analogPin);
+    
+    ubidots.add(VARIABLE_LABEL, speed_mps); // Insert your variable Labels and the value to be sent
+>>>>>>> Stashed changes
     ubidots.publish(DEVICE_LABEL);
     timer = millis();
   }
   ubidots.loop();
 }
+<<<<<<< Updated upstream
+=======
+float mapfloat(float x, float in_min, float in_max, float out_min, float out_max)
+    {
+    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    }
+>>>>>>> Stashed changes
