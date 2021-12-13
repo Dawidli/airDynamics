@@ -69,30 +69,38 @@ void loop()
   }
   if (abs(millis() - timer) > PUBLISH_FREQUENCY) // triggers the routine every 5 seconds
   {
-<<<<<<< Updated upstream
-    float value = analogRead(analogPin);
-    ubidots.add(VARIABLE_LABEL, value); // Insert your variable Labels and the value to be sent
-=======
+
     float sensorValue = analogRead(analogPin);
-    float voltage = (sensorValue / 1023) * 5;
-    float wind_speed = mapfloat(voltage, 0.4, 2, 0, 32.4);
+    float voltage = sensorValue * 0.004882813;
+    float gudveit = (((voltage-1.2)-0.4)*(32.4-0))/((2-0.4)+0);
+    /*float wind_speed = mapfloat(voltage, 0.4, 2, 0, 32.4);
     float speed_mph = ((wind_speed *3600)/1609.344);
-    float speed_mps = speed_mph*0.447;
+    float speed_mps = speed_mph*0.447;*/
     
     
     //float value = analogRead(analogPin);
     
-    ubidots.add(VARIABLE_LABEL, speed_mps); // Insert your variable Labels and the value to be sent
->>>>>>> Stashed changes
+    ubidots.add(VARIABLE_LABEL, gudveit); // Insert your variable Labels and the value to be sent
+
     ubidots.publish(DEVICE_LABEL);
     timer = millis();
   }
   ubidots.loop();
 }
-<<<<<<< Updated upstream
-=======
+/*
 float mapfloat(float x, float in_min, float in_max, float out_min, float out_max)
     {
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-    }
->>>>>>> Stashed changes
+    }*/
+
+
+
+
+    /* gjort nåe testing;   fø ein eller annen grunn så fir spinne tingen konstant ut 1.6 V. 
+     *  I "databladet" så seie de at kvile spenningen ska væra på 0.4 V. AKA det ca 1.2 V fø mye.
+     *  Detta føre te at når det går igjennom matte stykke blir nåe fucka (får hvile m/s på 24-25 m/s).
+     *  Koffe an gjær detta e eg meget usikker på å må nok sjekka opp i.
+     *  ein jalla løysning e å trekka fra den spenningen, men det e nok ikkje det besta.
+     *  
+     *  Matte stykke som me fekk fra nettsiå stemme (så lenge deiras matte e rektig).
+     */
