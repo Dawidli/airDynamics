@@ -1,7 +1,7 @@
-/******************************************
+  /******************************************
  *
  * This example works for both Industrial and STEM users.
- *
+ 
  * Developed by Jose Garcia, https://github.com/jotathebest/
  *
  * ****************************************/
@@ -15,8 +15,8 @@
  * Define Constants
  ****************************************/
 const char *UBIDOTS_TOKEN = "BBFF-lxUrvf1VPtA5yDPTGKoTrtGif4tfHJ";  // Put here your Ubidots TOKEN
-const char *WIFI_SSID = "CanYouGuessIt";      // Put here your Wi-Fi SSID
-const char *WIFI_PASS = "H0wD1dY0uGuess1t???";      // Put here your Wi-Fi password
+const char *WIFI_SSID = "Get-DCFCD1"; //"CanYouGuessIt";      // Put here your Wi-Fi SSID
+const char *WIFI_PASS = "34BECJ7T4"; //"H0wD1dY0uGuess1t???";      // Put here your Wi-Fi password
 const char *DEVICE_LABEL = "wind";   // Put here your Device label to which data  will be published
 const char *VARIABLE_LABEL = "test"; // Put here your Variable label to which data  will be published
 
