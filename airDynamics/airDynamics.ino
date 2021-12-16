@@ -65,7 +65,7 @@ void loop()
   // put your main code here, to run repeatedly:
   if (!ubidots.connected())
   {
-    ubidots.reconnect();
+
   }
   if (abs(millis() - timer) > PUBLISH_FREQUENCY) // triggers the routine every 5 seconds
   {
