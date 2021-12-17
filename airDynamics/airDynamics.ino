@@ -14,18 +14,18 @@
 /****************************************
    Define Constants
  ****************************************/
-const char *UBIDOTS_TOKEN = "BBFF-vyL7Jrf7sul9GFM3mP17xlZTLxjNvK";  // Put here your Ubidots TOKEN
+const char *UBIDOTS_TOKEN = "BBFF-lxUrvf1VPtA5yDPTGKoTrtGif4tfHJ";  // Put here your Ubidots TOKEN
 const char *WIFI_SSID = "Get-2G-DCFCD1"; //"CanYouGuessIt";
 const char *WIFI_PASS = "347BECJ7T4"; //"H0wD1dY0uGuess1t???";
-const char *DEVICE_LABEL = "vind_maling_test_2";   // Put here your Device label to which data  will be published
-const char *VARIABLE_LABEL_1 = "anemometer_1"; // Put here your Variable label to which data  will be published
-const char *VARIABLE_LABEL_2 = "anemometer_2"; // Put here your Variable label to which data  will be published
+const char *DEVICE_LABEL = "wind";   // Put here your Device label to which data  will be published
+const char *VARIABLE_LABEL_1 = "anemometer"; // Put here your Variable label to which data  will be published
+const char *VARIABLE_LABEL_2 = "temp"; // Put here your Variable label to which data  will be published
 
 const int PUBLISH_FREQUENCY = 1000; // Update rate in milliseconds
 
 unsigned long timer;
-uint8_t analogPin_1 = 34; // Pin used to read data from GPIO34 ADC_CH6.
-uint8_t analogPin_2 = 32;
+uint8_t anemometer = 34; // Pin used to read data from GPIO34 ADC_CH6.
+uint8_t tempSens = 35;
 
 Ubidots ubidots(UBIDOTS_TOKEN);
 
@@ -71,8 +71,8 @@ void loop()
   }
   if (abs(millis() - timer) > PUBLISH_FREQUENCY) // triggers the routine every 5 seconds
   {
-  ubidots.add(VARIABLE_LABEL_1, anemometer_reading( analogPin_1)); // Insert your variable Labels and the value to be sent
-  ubidots.add(VARIABLE_LABEL_2, anemometer_reading( analogPin_2));
+  ubidots.add(VARIABLE_LABEL_1, anemometer_reading( anemometer)); // Insert your variable Labels and the value to be sent
+  ubidots.add(VARIABLE_LABEL_2, tempRead( tempSens));
   ubidots.publish(DEVICE_LABEL);
   timer = millis();
 
@@ -93,6 +93,15 @@ float anemometer_reading(float sensor)
   float wind_speed = mapfloat(voltage, 0.38, 2, 0, 32.4);
 
   return wind_speed;
+}
+
+float tempRead(float sensor)
+{
+ float voltage = (analogRead(sensor) * 0.001221001);   
+ float degreesC = (voltage - 0.5) * 100.0;  
+
+ return degreesC;
+ 
 }
 
 /* ME FANT UT AV DET BITCHES*/
