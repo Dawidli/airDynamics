@@ -140,8 +140,19 @@ float anemometer_reading(float sensor)
 
 float tempRead(float sensor)
 {
-  float voltage = (analogRead(sensor) * 0.001221001);
+  float bits = analogRead(sensor);
+  float voltage = (bits/1023);
   float degreesC = (voltage - 0.5) * 100.0;
+
+  Serial.print("bits: ");
+  Serial.println(bits);
+
+  Serial.print("volt: ");
+  Serial.println(voltage);
+
+  Serial.print("degreesC: ");
+  Serial.println(degreesC);
+
 
   samplesTemp.add(degreesC);
 
