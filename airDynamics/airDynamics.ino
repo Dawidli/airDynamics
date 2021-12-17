@@ -14,10 +14,10 @@
 /****************************************
    Define Constants
  ****************************************/
-const char *UBIDOTS_TOKEN = "BBFF-lxUrvf1VPtA5yDPTGKoTrtGif4tfHJ";  // Put here your Ubidots TOKEN
+const char *UBIDOTS_TOKEN = "BBFF-vyL7Jrf7sul9GFM3mP17xlZTLxjNvK";  // Put here your Ubidots TOKEN
 const char *WIFI_SSID = "Get-2G-DCFCD1"; //"CanYouGuessIt";
 const char *WIFI_PASS = "347BECJ7T4"; //"H0wD1dY0uGuess1t???";
-const char *DEVICE_LABEL = "wind";   // Put here your Device label to which data  will be published
+const char *DEVICE_LABEL = "vind_maling_test_2";   // Put here your Device label to which data  will be published
 const char *VARIABLE_LABEL_1 = "anemometer_1"; // Put here your Variable label to which data  will be published
 const char *VARIABLE_LABEL_2 = "anemometer_2"; // Put here your Variable label to which data  will be published
 
