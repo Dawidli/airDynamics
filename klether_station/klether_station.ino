@@ -143,7 +143,7 @@ float tempRead(float sensor)
   float voltage = (analogRead(sensor) * 0.001221001);
   float degreesC = (voltage - 0.5) * 100.0;
 
-  samplesTemp.add(degreesC);
+  samplesTemp.add(degreesC);    //Legger temp inn i egen buffer (ikke samme buffer som wind).
 
   return degreesC;
 
