@@ -26,13 +26,21 @@ RunningMedian samplestemp = RunningMedian(5);
 //const char *VARIABLE_LABEL_1 = "anemometer"; // Put here your Variable label to which data  will be published
 //const char *VARIABLE_LABEL_2 = "temp"; // Put here your Variable label to which data  will be published
 
-//Trum sin account!
-const char *UBIDOTS_TOKEN = "BBFF-vyL7Jrf7sul9GFM3mP17xlZTLxjNvK";  // Put here your Ubidots TOKEN
-const char *WIFI_SSID = "Get-2G-DCFCD1"; //"CanYouGuessIt";
+//Simon sin #2 account
+const char *UBIDOTS_TOKEN = "BBFF-5GSwh0GFChtfrPnCWWXPvSdIlN3nei";  // Put here your Ubidots TOKEN
+const char *WIFI_SSID = "Get-2G-DCFCD1";
 const char *WIFI_PASS = "347BECJ7T4"; //"H0wD1dY0uGuess1t???";
 const char *DEVICE_LABEL = "wind";   // Put here your Device label to which data  will be published
 const char *VARIABLE_LABEL_1 = "anemometer"; // Put here your Variable label to which data  will be published
 const char *VARIABLE_LABEL_2 = "temp"; // Put here your Variable label to which data  will be published
+
+////Trum sin account!
+//const char *UBIDOTS_TOKEN = "BBFF-vyL7Jrf7sul9GFM3mP17xlZTLxjNvK";  // Put here your Ubidots TOKEN
+//const char *WIFI_SSID = "Get-2G-DCFCD1"; //"CanYouGuessIt";
+//const char *WIFI_PASS = "347BECJ7T4"; //"H0wD1dY0uGuess1t???";
+//const char *DEVICE_LABEL = "wind";   // Put here your Device label to which data  will be published
+//const char *VARIABLE_LABEL_1 = "anemometer"; // Put here your Variable label to which data  will be published
+//const char *VARIABLE_LABEL_2 = "temp"; // Put here your Variable label to which data  will be published
 
 // //Dawid sin account!
 //const char *UBIDOTS_TOKEN = "BBFF-lxUrvf1VPtA5yDPTGKoTrtGif4tfHJ";  // Put here your Ubidots TOKEN
