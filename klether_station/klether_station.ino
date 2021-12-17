@@ -102,11 +102,12 @@ void loop()
   // put your main code here, to run repeatedly:
   if (!ubidots.connected())
   {
-
+    ubidots.reconnect();
   }
-  if (bool samples.isFull()) // triggers the routine every time the array is full
+  
+  if ( bool penis = samples.isFull() ) // triggers the routine every time the array is full
   {
-    long float nemometer_mvalue = samples.getMedian();  //Tar median av hele bufferen som sendes til ubidots.
+    float nemometer_mvalue = samples.getMedian();  //Tar median av hele bufferen som sendes til ubidots.
 
     ubidots.add(VARIABLE_LABEL_1, nemometer_mvalue); // Insert your variable Labels and the value to be sent
     ubidots.add(VARIABLE_LABEL_2, tempRead( tempSens));
