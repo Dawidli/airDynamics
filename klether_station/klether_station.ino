@@ -140,6 +140,7 @@ float anemometer_reading(float sensor)
 
 float tempRead(float sensor)
 {
+<<<<<<< HEAD
   float bits = analogRead(sensor);
   float voltage = (bits/1023);
   float degreesC = (voltage - 0.5) * 100.0;
@@ -155,6 +156,12 @@ float tempRead(float sensor)
 
 
   samplesTemp.add(degreesC);
+=======
+  float voltage = (analogRead(sensor) / 1023);
+  float degreesC = (voltage - 0.5) * 100.0;
+
+  samplesTemp.add(degreesC);    //Legger temp inn i egen buffer (ikke samme buffer som wind).
+>>>>>>> 84a6353102a99a51d4e46e1eced80f8e8e04f407
 
   return degreesC;
 
