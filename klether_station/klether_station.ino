@@ -12,9 +12,9 @@
 #include "UbidotsEsp32Mqtt.h"
 #include <RunningMedian.h>
 
-RunningMedian samples = RunningMedian(5);
+RunningMedian samplesWind = RunningMedian(5);
 
-RunningMedian samplestemp = RunningMedian(5);
+RunningMedian samplesTemp = RunningMedian(5);
 /****************************************
    Define Constants
  ****************************************/
@@ -96,6 +96,7 @@ void loop()
   if (abs(millis() - timer) > TRIGGER_FREQUENCY) // triggers the routine every 1 seconds
   {
     anemometer_reading( anemometer );
+    tempRead( tempSens );
     timer = millis();
   }
 
@@ -105,15 +106,16 @@ void loop()
     ubidots.reconnect();
   }
   
-  if ( bool penis = samples.isFull() ) // triggers the routine every time the array is full
+  if ( bool isBufferFull = samplesWind.isFull() ) // triggers the routine every time the array is full
   {
-    float nemometer_mvalue = samples.getMedian();  //Tar median av hele bufferen som sendes til ubidots.
+    float nemometer_mvalue = samplesWind.getMedian();  //Tar median av hele bufferen som sendes til ubidots.
+    float temp_mvalue      = samplesTemp.getMedian();  //Tar median av hele temp bufferen som sendes til ubidots.
 
     ubidots.add(VARIABLE_LABEL_1, nemometer_mvalue); // Insert your variable Labels and the value to be sent
-    ubidots.add(VARIABLE_LABEL_2, tempRead( tempSens));
+    ubidots.add(VARIABLE_LABEL_2, temp_mvalue);
     ubidots.publish(DEVICE_LABEL);
 
-    samples.clear(); //Sletter alle verdier i bufferen. Aka tar vi x antall målinger finner median av de og publisher én verdi som er funnet via de x antall målingene.
+    samplesWind.clear(); //Sletter alle verdier i bufferen. Aka tar vi x antall målinger finner median av de og publisher én verdi som er funnet via de x antall målingene.
 
   }
   ubidots.loop();
@@ -131,7 +133,7 @@ float anemometer_reading(float sensor)
   float voltage = (sensorValue * 0.001221001); //esp har en maks analogread på 5 v og bits avlesning på 4095 dermed deler en på 5/4095
   float wind_speed = mapfloat(voltage, 0.38, 2, 0, 32.4);
 
-  samples.add(wind_speed);  //Legger wind speeden inn i bufferen/arrayen.
+  samplesWind.add(wind_speed);  //Legger wind speeden inn i bufferen/arrayen.
 
   return wind_speed;
 }
@@ -140,6 +142,8 @@ float tempRead(float sensor)
 {
   float voltage = (analogRead(sensor) * 0.001221001);
   float degreesC = (voltage - 0.5) * 100.0;
+
+  samplesTemp.add(degreesC);
 
   return degreesC;
 
